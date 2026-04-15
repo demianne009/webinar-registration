@@ -2,71 +2,172 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Webinar Registration</title>
+  <title>GASB 101 Explained – Webinar Registration</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      padding: 40px;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #faf7f2;
+      color: #0f172a;
     }
-    .box {
-      max-width: 400px;
-      background: white;
-      padding: 24px;
+
+    /* HERO */
+    .hero {
+      background: #0b3a5d;
+      color: white;
+      padding: 32px;
+      border-radius: 12px;
+      margin: 24px;
+    }
+
+    .hero small {
+      opacity: 0.8;
+      font-size: 13px;
+    }
+
+    .hero h1 {
+      margin: 10px 0 6px;
+      font-size: 26px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    .hero button {
+      margin-top: 16px;
+      background: #1da1f2;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 1100px;
       margin: auto;
-      border-radius: 8px;
+      padding: 0 24px 48px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
     }
-    input, button {
+
+    /* LEFT CONTENT */
+    .content h2 {
+      margin-top: 24px;
+      font-size: 18px;
+    }
+
+    .content p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #334155;
+    }
+
+    .content ul {
+      padding-left: 18px;
+      font-size: 14px;
+      color: #334155;
+    }
+
+    .content li {
+      margin-bottom: 6px;
+    }
+
+    /* RIGHT CARD */
+    .card {
+      background: #0b3a5d;
+      color: white;
+      padding: 24px;
+      border-radius: 12px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 16px;
+    }
+
+    .detail {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .card button {
+      background: #1da1f2;
       width: 100%;
+      margin-top: 16px;
+      border: none;
       padding: 10px;
-      margin-top: 10px;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="box">
-    <h2>Register for Our Webinar</h2>
 
-    <form id="registrationForm">
-      <input type="text" id="firstName" placeholder="First name" required />
-      <input type="text" id="lastName" placeholder="Last name" required />
-      <input type="email" id="email" placeholder="Email address" required />
-      <button type="submit">Register</button>
-    </form>
+  <!-- HERO -->
+  <section class="hero">
+    <small>Live Webinar | May 14 at 10:00 AM PT | 1.0 CPE Credit</small>
+    <h1>GASB 101 Explained:<br>From Basics to Best Practices</h1>
+    <button>Register Now →</button>
+  </section>
 
-    <p id="message"></p>
-  </div>
+  <!-- CONTENT -->
+  <section class="container">
+    <div class="content">
+      <h2>Program Description</h2>
+      <p>
+        Now that GASB 101 is being implemented, what does this mean for your organization moving forward?
+        This session will break down the basics of GASB 101 and provide practical steps to ensure compliance and confidence.
+      </p>
 
-  <script>
-    const form = document.getElementById('registrationForm');
-    const message = document.getElementById('message');
+      <p>
+        Join us on <strong>Wednesday, May 14 at 10:00 AM PT</strong> in a comprehensive webinar on GASB 101 best practices.
+        This session will guide you through key elements, common challenges, and strategies for a smooth transition.
+      </p>
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+      <h2>Key Topics</h2>
+      <ul>
+        <li>Overview and Purpose of GASB 101</li>
+        <li>Real‑World Examples and Case Studies</li>
+        <li>Compliance and Reporting Strategies</li>
+      </ul>
 
-      const payload = {
-        first_name: document.getElementById('firstName').value,
-        last_name: document.getElementById('lastName').value,
-        email: document.getElementById('email').value
-      };
+      <h2>CPE Credit</h2>
+      <p>
+        To receive full CPE credit, participants must respond to at least three out of four polling questions during the webinar.
+      </p>
+      <p>
+        Participants will earn <strong>1.0 CPE credit</strong>.
+      </p>
+      <p>
+        <strong>Field of Study:</strong> Accounting (Governmental)
+      </p>
+    </div>
 
-      try {
-        const response = await fetch('YOUR_BACKEND_URL_HERE', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
+    <!-- RIGHT SIDEBAR -->
+    <aside class="card">
+      <h3>Webinar Details</h3>
+      <div class="detail"><strong>When:</strong> Wednesday, May 14, 2025</div>
+      <div class="detail"><strong>Time:</strong> 10:00 AM PT</div>
+      <div class="detail"><strong>Duration:</strong> 90 minutes</div>
+      <button>Register Now</button>
+    </aside>
+  </section>
 
-        if (response.ok) {
-          message.textContent = "✅ Registration successful! Check your email.";
-          form.reset();
-        } else {
-          message.textContent = "❌ Registration failed. Please try again.";
-        }
-      } catch (err) {
-        message.textContent = "❌ Network error.";
-      }
-    });
-  </script>
 </body>
 </html>
