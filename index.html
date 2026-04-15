@@ -114,7 +114,45 @@
         grid-template-columns: 1fr;
       }
     }
-  </style>
+ 
+.registration-form {
+  max-width: 420px;
+  margin: 32px auto;
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.registration-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.registration-form button {
+  width: 100%;
+  padding: 11px;
+  background: #1da1f2;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.registration-form button:hover {
+  background: #168bd0;
+}
+
+#formMessage {
+  margin-top: 12px;
+  font-size: 13px;
+}
+ </style>
 </head>
 
 <body>
@@ -123,8 +161,37 @@
   <section class="hero">
     <small>Live Webinar | May 14 at 10:00 AM PT | 1.0 CPE Credit</small>
     <h1>GASB 103, 104 & 105 Explained:<br>From Basics to Best Practices</h1>
-    <button>Register Now →</button>
+    <button onclick="document.getElementById('registrationForm').scrollIntoView({ behavior: 'smooth' })">
+  Register Now →
+</button>
   </section>
+
+<form id="registrationForm" class="registration-form">
+  <input
+    type="text"
+    id="firstName"
+    placeholder="First Name"
+    required
+  />
+
+  <input
+    type="text"
+    id="lastName"
+    placeholder="Last Name"
+    required
+  />
+
+  <input
+    type="email"
+    id="email"
+    placeholder="Email Address"
+    required
+  />
+
+  <button type="submit">Register Now</button>
+
+  <p id="formMessage"></p>
+</form>
 
   <!-- CONTENT -->
   <section class="container">
@@ -165,9 +232,39 @@
       <div class="detail"><strong>When:</strong> Wednesday, May 14, 2025</div>
       <div class="detail"><strong>Time:</strong> 10:00 AM PT</div>
       <div class="detail"><strong>Duration:</strong> 90 minutes</div>
-      <button>Register Now</button>
+<button onclick="document.getElementById('registrationForm').scrollIntoView({ behavior: 'smooth' })">
+  Register Now
+</button>
+
     </aside>
   </section>
+
+<script>
+  const form = document.getElementById('registrationForm');
+  const message = document.getElementById('formMessage');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    message.style.color = '#0f172a';
+    message.textContent = 'Submitting...';
+
+    // ✅ This is where Zoom integration will go later
+    const data = {
+      first_name: form.firstName.value,
+      last_name: form.lastName.value,
+      email: form.email.value
+    };
+
+    setTimeout(() => {
+      message.style.color = 'green';
+      message.textContent =
+        '✅ You are registered! Please check your email for confirmation.';
+      form.reset();
+    }, 800);
+  });
+</script>
+``
 
 </body>
 </html>
